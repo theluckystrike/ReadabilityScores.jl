@@ -1,0 +1,13 @@
+name = "ReadabilityScores"
+uuid = "850d8d36-cda6-46f7-9c97-5235cb010dad"
+authors = ["Michal Lip <lipmichal@gmail.com>"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
