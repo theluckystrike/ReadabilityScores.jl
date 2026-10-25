@@ -2,11 +2,13 @@ using ReadabilityScores
 using Test
 
 # Two excerpts used throughout: a contract clause and a piece of API reference.
-const CONTRACT = "The party of the first part shall indemnify and hold harmless \
-the party of the second part against any and all claims arising consequent to \
-the execution hereof."
-const APIDOC = "The endpoint returns a JSON object containing the authentication \
-token. Include this token in the Authorization header for subsequent requests."
+# Built with `*` rather than a backslash line continuation inside the string
+# literal: that syntax needs Julia 1.7, and Project.toml declares julia = "1.6".
+const CONTRACT = "The party of the first part shall indemnify and hold harmless " *
+    "the party of the second part against any and all claims arising consequent to " *
+    "the execution hereof."
+const APIDOC = "The endpoint returns a JSON object containing the authentication " *
+    "token. Include this token in the Authorization header for subsequent requests."
 
 @testset "ReadabilityScores" begin
 
@@ -82,8 +84,8 @@ token. Include this token in the Authorization header for subsequent requests."
 
     @testset "monotonic in the obvious direction" begin
         simple = "The dog ran. The cat sat. The sun rose."
-        hard = "Notwithstanding the aforementioned considerations, the \
-organisational infrastructure necessitates comprehensive reconfiguration."
+        hard = "Notwithstanding the aforementioned considerations, the " *
+            "organisational infrastructure necessitates comprehensive reconfiguration."
         @test flesch_reading_ease(simple) > flesch_reading_ease(hard)
         @test flesch_kincaid_grade(simple) < flesch_kincaid_grade(hard)
         @test gunning_fog(simple) < gunning_fog(hard)
