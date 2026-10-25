@@ -3,10 +3,14 @@ on:
   push:
     branches: [main]
   pull_request:
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Julia ${{ matrix.version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
